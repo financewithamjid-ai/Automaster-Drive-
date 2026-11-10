@@ -24,20 +24,20 @@
 </head>
 <body>
   <h1>Auto Master Drive</h1>
-  <p class="sub">YouTube production dashboard &middot; <a href="https://youtube.com/@automasterdrive">youtube.com/@automasterdrive</a> &middot; updated 9 Nov 2026</p>
+  <p class="sub">YouTube production dashboard &middot; <a href="https://youtube.com/@automasterdrive">youtube.com/@automasterdrive</a> &middot; updated <span id="stat-date">10 Nov 2026</span></p>
 
   <div class="cards">
-    <div class="card"><div class="label">Subscribers</div><div class="value">51</div></div>
-    <div class="card"><div class="label">Total views</div><div class="value">29,169</div></div>
-    <div class="card"><div class="label">Videos</div><div class="value">102</div></div>
+    <div class="card"><div class="label">Subscribers</div><div class="value" id="stat-subs">53</div></div>
+    <div class="card"><div class="label">Total views</div><div class="value" id="stat-views">29,479</div></div>
+    <div class="card"><div class="label">Videos</div><div class="value" id="stat-videos">105</div></div>
   </div>
 
   <section>
     <h2>Next 3 uploads (01:00 PKT)</h2>
     <ul>
-      <li><b>Tue 10 Nov</b> — Tesla Cybertruck vs Rivian R1T 2026: 320 vs 420 Miles — Tesla ENDS Cybertruck in 2027</li>
       <li><b>Thu 12 Nov</b> — Scout legal fight (Tennessee / California dealer-licence cases)</li>
       <li><b>Fri 13 Nov</b> — TBD (scoreboard decides)</li>
+      <li><b>Sun 15 Nov</b> — Fast-trending (scoreboard decides)</li>
     </ul>
   </section>
 
@@ -45,7 +45,7 @@
     <h2>Monetization target</h2>
     <p class="target"><b>1,000 subscribers + 4,000 watch hours by 31 Jan 2027</b><br>
     Apply at the old YPP bar before it doubles (1,000 subs + 8,000 hours) on 1 Feb 2027.</p>
-    <p>Remaining: 949 subscribers &middot; ~3,524 watch hours. Current pace does not reach it — only a viral-scale jump closes the gap.</p>
+    <p>Remaining: <span id="stat-remaining">947</span> subscribers &middot; ~3,524 watch hours. Current pace does not reach it — only a viral-scale jump closes the gap.</p>
   </section>
 
   <section>
@@ -58,6 +58,17 @@
     </ul>
   </section>
 
-  <footer>Stats as of 9 Nov 2026. Daily history lives in <code>stats/history.jsonl</code> (updated by GitHub Actions). Source: <a href="https://github.com/financewithamjid-ai/auto-master-drive">github.com/financewithamjid-ai/auto-master-drive</a></footer>
+  <footer>Stats as of <span id="stat-date2">10 Nov 2026</span>. Refreshed automatically every 6 hours by GitHub Actions. Daily history lives in <code>stats/history.jsonl</code>. Source: <a href="https://github.com/financewithamjid-ai/Automaster-Drive-">github.com/financewithamjid-ai/Automaster-Drive-</a></footer>
+<script>
+fetch('stats.json', {cache: 'no-store'}).then(function(r){ return r.json(); }).then(function(d){
+  var fmt = function(n){ return Number(n).toLocaleString('en-US'); };
+  var dateStr = d.as_of ? new Date(d.as_of + 'T00:00:00Z').toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'}) : null;
+  if (d.subscribers != null) document.getElementById('stat-subs').textContent = fmt(d.subscribers);
+  if (d.total_views != null) document.getElementById('stat-views').textContent = fmt(d.total_views);
+  if (d.videos != null) document.getElementById('stat-videos').textContent = fmt(d.videos);
+  if (d.subscribers != null && d.monetization_target && d.monetization_target.subscribers) document.getElementById('stat-remaining').textContent = fmt(d.monetization_target.subscribers - d.subscribers);
+  if (dateStr) { document.getElementById('stat-date').textContent = dateStr; document.getElementById('stat-date2').textContent = dateStr; }
+}).catch(function(){ /* keep the baked-in numbers */ });
+</script>
 </body>
 </html>
