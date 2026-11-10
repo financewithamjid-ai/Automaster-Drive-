@@ -30,7 +30,7 @@ jobs:
       - name: Fetch public channel stats
         run: |
           set +e
-          yt-dlp --dump-single-json --playlist-end 0 \
+          yt-dlp --dump-single-json --playlist-end 1 \
             "https://www.youtube.com/@automasterdrive" \
             > /tmp/channel.json 2>/tmp/ytdlp.err
           status=$?
