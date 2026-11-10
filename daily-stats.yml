@@ -1,0 +1,67 @@
+# Daily channel stats — Auto Master Drive
+# Runs every day at 01:30 UTC. Fetches the PUBLIC stats of
+# https://youtube.com/@automasterdrive with yt-dlp (no API key needed)
+# and appends one JSON line to stats/history.jsonl.
+# Fails soft: if yt-dlp cannot reach YouTube, the job logs and exits 0
+# so a bad day never breaks the workflow.
+
+name: daily-stats
+
+on:
+  schedule:
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Install yt-dlp
+        run: |
+          python3 -m pip install --quiet --upgrade yt-dlp
+
+      - name: Fetch public channel stats
+        run: |
+          set +e
+          yt-dlp --dump-single-json --playlist-end 0 \
+            "https://www.youtube.com/@automasterdrive" \
+            > /tmp/channel.json 2>/tmp/ytdlp.err
+          status=$?
+          if [ $status -ne 0 ] || [ ! -s /tmp/channel.json ]; then
+            echo "yt-dlp failed (exit $status) — skipping today, no commit."
+            cat /tmp/ytdlp.err | tail -5
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json, datetime
+          with open('/tmp/channel.json', encoding='utf-8') as f:
+              data = json.load(f)
+          row = {
+              "date": datetime.date.today().isoformat(),
+              "subscribers": data.get("channel_follower_count"),
+              "views": data.get("view_count"),
+              "videos": data.get("playlist_count"),
+              "channel": "@automasterdrive",
+          }
+          with open('stats/history.jsonl', 'a', encoding='utf-8') as f:
+              f.write(json.dumps(row) + "\n")
+          print("appended:", row)
+          PY
+
+      - name: Commit stats
+        run: |
+          if git status --porcelain stats/history.jsonl | grep -q .; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add stats/history.jsonl
+            git commit -m "stats: daily channel snapshot $(date +%F)"
+            git push
+          else
+            echo "No change to commit."
+          fi
