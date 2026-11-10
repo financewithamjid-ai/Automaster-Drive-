@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auto Master Drive — Dashboard</title>
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #0b1220; color: #e8eefc; margin: 0; padding: 24px; }
+  h1 { color: #4da3ff; margin: 0 0 4px; }
+  p.sub { color: #9fb3d1; margin: 0 0 24px; }
+  .cards { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
+  .card { background: #16233d; border: 1px solid #24406b; border-radius: 12px; padding: 16px 20px; min-width: 160px; }
+  .card .label { font-size: 13px; color: #9fb3d1; text-transform: uppercase; letter-spacing: .05em; }
+  .card .value { font-size: 34px; font-weight: 700; margin-top: 4px; }
+  section { background: #101a2e; border: 1px solid #22385c; border-radius: 12px; padding: 16px 20px; margin-bottom: 16px; }
+  section h2 { margin: 0 0 10px; font-size: 18px; color: #7db8ff; }
+  ul { margin: 0; padding-left: 20px; }
+  li { margin: 6px 0; }
+  .target { font-size: 18px; }
+  .target b { color: #ffd166; }
+  a { color: #7db8ff; }
+  footer { color: #7c8ea9; font-size: 13px; margin-top: 24px; }
+</style>
+</head>
+<body>
+  <h1>Auto Master Drive</h1>
+  <p class="sub">YouTube production dashboard &middot; <a href="https://youtube.com/@automasterdrive">youtube.com/@automasterdrive</a> &middot; updated 9 Nov 2026</p>
+
+  <div class="cards">
+    <div class="card"><div class="label">Subscribers</div><div class="value">51</div></div>
+    <div class="card"><div class="label">Total views</div><div class="value">29,169</div></div>
+    <div class="card"><div class="label">Videos</div><div class="value">102</div></div>
+  </div>
+
+  <section>
+    <h2>Next 3 uploads (01:00 PKT)</h2>
+    <ul>
+      <li><b>Tue 10 Nov</b> — Tesla Cybertruck vs Rivian R1T 2026: 320 vs 420 Miles — Tesla ENDS Cybertruck in 2027</li>
+      <li><b>Thu 12 Nov</b> — Scout legal fight (Tennessee / California dealer-licence cases)</li>
+      <li><b>Fri 13 Nov</b> — TBD (scoreboard decides)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Monetization target</h2>
+    <p class="target"><b>1,000 subscribers + 4,000 watch hours by 31 Jan 2027</b><br>
+    Apply at the old YPP bar before it doubles (1,000 subs + 8,000 hours) on 1 Feb 2027.</p>
+    <p>Remaining: 949 subscribers &middot; ~3,524 watch hours. Current pace does not reach it — only a viral-scale jump closes the gap.</p>
+  </section>
+
+  <section>
+    <h2>System</h2>
+    <ul>
+      <li>4 long videos/week (Tue / Thu / Fri + Sun fast-trending) + 2 Shorts/day</li>
+      <li>Titles: model + year + "vs" + number / price / range — no puzzle titles</li>
+      <li>Honesty first: claim vs tested vs official, every figure labelled</li>
+      <li>Upload disclosure: altered / synthetic content = YES (AI images + AI voiceover)</li>
+    </ul>
+  </section>
+
+  <footer>Stats as of 9 Nov 2026. Daily history lives in <code>stats/history.jsonl</code> (updated by GitHub Actions). Source: <a href="https://github.com/financewithamjid-ai/auto-master-drive">github.com/financewithamjid-ai/auto-master-drive</a></footer>
+</body>
+</html>
