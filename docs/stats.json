@@ -1,1 +1,18 @@
-{"as_of": "2026-11-11", "channel": "@automasterdrive", "monetization_target": {"deadline": "2027-01-31T23:59:00Z", "note": "Apply at the old YPP bar before it doubles (1000 subs + 8000 hours) on 2027-02-01.", "subscribers": 1000, "watch_hours": 4000}, "next_uploads": [{"date": "2026-11-12", "day": "Thu", "title": "Scout legal fight (Tennessee / California dealer-licence cases)"}, {"date": "2026-11-13", "day": "Fri", "title": "Cyberbeast $109,990 \u2014 cheapest Cybertruck over $100,000"}, {"date": "2026-11-15", "day": "Sun", "title": "Fast-trending (scoreboard decides)"}], "subscribers": 53, "total_views": null, "videos": 2}
+{
+  "as_of": "2026-11-12",
+  "channel": "@automasterdrive",
+  "subscribers": 53,
+  "total_views": 29948,
+  "videos": 110,
+  "monetization_target": {
+    "subscribers": 1000,
+    "watch_hours": 4000,
+    "deadline": "2027-01-31T23:59:00Z",
+    "note": "Apply at the old YPP bar before it doubles (1000 subs + 8000 hours) on 2027-02-01."
+  },
+  "next_uploads": [
+    {"date": "2026-11-12", "day": "Thu", "title": "Scout legal fight (Tennessee / California dealer-licence cases)"},
+    {"date": "2026-11-13", "day": "Fri", "title": "Cyberbeast $109,990 — cheapest Cybertruck over $100,000"},
+    {"date": "2026-11-15", "day": "Sun", "title": "Fast-trending (scoreboard decides)"}
+  ]
+}
